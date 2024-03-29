@@ -31,6 +31,12 @@ class AbsenceController extends Controller
      */
     public function create(Request $request)
 {
+    $stagiaireId = $request->query('stagiaire_id');
+    $demandes = Demande::orderBy('created_at','desc')
+    ->limit(5)
+    ->get();
+    // Pass $stagiaireId to the view using compact or any other method
+    return view('absence.stagiaire_absence', compact('stagiaireId','demandes'));
     $stagiaire = Stagiaire::find($request->stagiaire_id);
     $absences = Absence::where('stagiaire_id', $request->stagiaire_id)->get();
     $count = Absence::where('stagiaire_id', $request->stagiaire_id)->count();

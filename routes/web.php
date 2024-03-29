@@ -5,6 +5,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AbsenceController;
 use App\Http\Controllers\accepteConroller;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\ExcelImportController;
@@ -26,31 +27,46 @@ Route::get('/not_found',function (){
 // Route::get('/', function () {
 //     return view('home');
 // })->name('home');
-Route::get('/home',[HomeController::class,'index'])->name('home');
-//login
+Route::get('/home', [HomeController::class, 'index'])->middleware('admin');
+
+//login user
 Route::get('/login',[LoginController::class, 'show'])->name('login.show');
 Route::post('/login',[LoginController::class, 'login'])->name('login');
 //logout
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout.logout');
 
+ 
 //register routes
 Route::get('/register',function (){
     return view('auth.register');
 });
+ 
+//login admin
+Route::get('/admin/login',[LoginController::class, 'showAdminLoginForm'])->name('admin.login-show');
+Route::post('/admin/login',[LoginController::class,'loginAdmin'])->name('admin.login');
+//Admin resource
+Route::resource('admins',AdminController::class);
+ 
 //groups routes
 Route::resource('groups',GroupController::class);
+
 //stagiaires routes
 Route::resource('stagiaires',StagiaireController::class);
+
 //absences routes
 Route::get('/absences/alert', [AbsenceController::class, 'alert'])->name('absences.alert');
+
+//route absences
 Route::resource('absences',AbsenceController::class);
+
 //demande route
 Route::get('/demandes/traiter', [DemandeController::class, 'traiter'])->name('demandes.traiter');
 
-Route::resource('demandes',DemandeController::class);  
+Route::resource('demandes',DemandeController::class);
+
 Route::post('/demandes/accepte', [accepteConroller::class,'accepte'])->name('demand.accepte');
 Route::post('/demandes/delete', [accepteConroller::class,'delete'])->name('demand.delete');
- 
+
 
 Route::get('/modules',function (){
     return view('module.list_module');
