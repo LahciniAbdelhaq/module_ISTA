@@ -32,6 +32,11 @@ Route::get('/login',[LoginController::class, 'show'])->name('login.show');
 Route::post('/login',[LoginController::class, 'login'])->name('login');
 //logout
 Route::get('/logout',[LoginController::class, 'logout'])->name('logout.logout');
+
+//register routes
+Route::get('/register',function (){
+    return view('auth.register');
+});
 //groups routes
 Route::resource('groups',GroupController::class);
 //stagiaires routes
