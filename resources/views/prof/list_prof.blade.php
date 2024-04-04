@@ -123,7 +123,7 @@
                                 <div class="row">
                                     <!-- Grid column -->
                                     <div class="col-md-12">
-                                        <h2 class="  pb-4   font-bold font-up deep-purple-text">List modules</h2>
+                                        <h2 class="  pb-4   font-bold font-up deep-purple-text">List Professeurs</h2>
                                         <div class="input-group md-form form-sm form-2  ">
                                             <input class="form-control my-0 py-1 pl-3 purple-border" id="searchinput" type="text" placeholder="Search something here..." aria-label="Search"> 
                                         </div>
@@ -136,12 +136,8 @@
                                     <!--Table head-->
                                     <thead>
                                         <tr>
-                                            <th>Code Module</th>
-                                            <th>module</th>
-                                            <th>nombre horaire</th>
-                                            <th>Régional</th>
-                                            <th>MH Presentiel</th>
-                                            <th>MH distanciel</th>
+                                            <th>Code professeur</th>
+                                            <th>Non et prenom</th> 
                                             <th>more</th>
                                         </tr>
                                     </thead>
@@ -150,66 +146,42 @@
                                     <tbody>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Oui</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Mark Otto</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>Oui</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Jacob Thornton</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>Non</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Larry the Bird</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>Non</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Mark Otto</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>Oui</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Jacob Thornton</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>
                                         </tr>
                                         <tr>
                                             <th scope="row">3</th>
-                                            <td>Larry</td>
-                                            <td>the Bird</td>
-                                            <td>Non</td>
-                                            <td>12</td>
-                                            <td>12</td>
+                                            <td>Larry the Bird</td> 
                                             <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
                                                     <i class="fa-regular fa-eye"></i> 
                                                 </a></td>

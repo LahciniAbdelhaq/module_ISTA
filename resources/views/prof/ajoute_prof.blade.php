@@ -3,11 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Absence Stagiaire</title>
-@include('layouts.header_links')
+  <title>AdminLTE 3 | Dashboard</title>
 
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
+   @include('layouts.header_links') 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -56,7 +54,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('demandes.index') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -72,9 +70,10 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('home') }}" class="brand-link">
-      <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-light">Admin</span>
+    <a href="#" class="brand-link">
+        <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin</span>
     </a>
 
     <!-- Sidebar -->
@@ -91,90 +90,97 @@
         <!-- Sidebar Menu -->
         @include('layouts.SidebarMenu')
         <!-- /.sidebar-menu -->
-       
     </div>
-    
     <!-- /.sidebar -->
-     
-  </aside>
-
+</aside>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2"> 
+        <div class="row mb-2">
+           
+          <!-- /.col -->
           <div class="col-sm-12">
-            <ol class="breadcrumb float-sm-right">  
-              <li class="breadcrumb-item"><a href="{{ route('absences.alert') }}">Alert</a></li>
-              <li class="breadcrumb-item">Dashboard </li>
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item ">Dashboard </li>
+                <li class="breadcrumb-item"><a href="{{ route('list_professeur') }}">Professeur</a></li>
+              <li class="breadcrumb-item active"><a href="{{ route('add_professeur') }}">Ajouter Professeur</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
     <!-- /.content-header -->
-<!-- Main content -->
-<section class="content">
-  <div class="container-fluid">
-    <!-- Alert Information -->
-    <div class="row justify-content-center">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header">
-            Absence Alert
-          </div>
-          <div class="card-body">
-            <div class="table ">
-              <table id="dataTable" class="table table-bordered  table-striped">
-                <thead>
-                  <tr>
-                    <th>Nom et Prénom</th>
-                    <th>Group</th>
-                    <th>Type Alert</th>
-                    <th>Nombre d'absence Justifiées</th>
-                    <th>Nombre d'absence Injustifiées</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>John Doe</td>
-                    <td>Group A</td>
-                    <td>Avertissement Surveillance generale</td>
-                    <td>5</td>
-                    <td>2</td>
-                  </tr>
-                  <tr>
-                    <td>Jane Smith</td>
-                    <td>Group B</td>
-                    <td>Avertissement Retard</td>
-                    <td>3</td>
-                    <td>1</td>
-                  </tr>
-                  <tr>
-                    <td>Michael Johnson</td>
-                    <td>Group C</td>
-                    <td>Avertissement Manquement</td>
-                    <td>7</td>
-                    <td>0</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div><!-- /.container-fluid -->
-</section>
-<!-- /.content -->
 
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        
-        
+        <div class="row">  
+            <div class="col-12">
+            <div class="card"> 
+                <!-- /.card-header -->  
+                <div class="card card-default">
+                    <div class="card-header">
+                      <h3 class="card-title">Ajouter module</h3>
+           
+                    </div>
+                </div>
+                    <!-- /.card-header -->
+                   
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- /.col -->
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                    <label>Code professeur</label> 
+                                    <input class="form-control @error('name') is-invalid @enderror" type="text" name="" id="" style="width: 100%;">
+                                    <div class="invalid-feedback">{{ $errors->first('nbr_stagiaires') }}</div>
+                              </div>  
+                            </div>
+                            <!-- /.col -->  
+                            </div>
+                        <div class="row">
+                           
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>nom professeur</label> 
+                                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="" id="" style="width: 100%;">
+                                  <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                </div>  
+                            </div> 
+                            <!-- /.form-group -->
+                          </div>
+                          
+                           
+                          <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                        
+                        <!-- /.row -->
+                      </div>
+                    <!-- /.card-body -->
+                      
+                <!-- /.card-body -->
+              </div>
+        </div> 
+        <div class="row"> 
+          <div class="col-12">
+              <div class="container">
+                  <form action="{{ route('excel.module') }}" method="post" enctype="multipart/form-data"  >
+                      @csrf
+                       <div class="mb-3">
+                      <label class="form-label" for="excel_file">Select Excel file:</label>
+                      <input type="file" class="form-control @error('excel_file') is-invalid @enderror" id="excel_file" name="excel_file" accept=".xls,.xlsx"  >
+                      <div class="invalid-feedback">Please select an Excel file.</div>
+                    </div> 
+                    <button type="submit" class="btn btn-primary">Upload Excel</button>
+                  </form>
+                </div>
+          </div>
+      </div>
+      </div> 
+        </div>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -193,15 +199,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-@extends('layouts.footerjs') 
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script> 
-    <!-- InputMask -->
-<script src="{{ asset('plugins/moment/moment.min.js') }}"></script> 
-<script>
-  $(document).ready(function() {
-    $('#dataTable').DataTable( );
-  });
-</script>
+ @include('layouts.footerjs')  
 </body>
 </html>

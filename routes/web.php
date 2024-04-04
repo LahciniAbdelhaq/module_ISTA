@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroupController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\AbsenceController;
-use App\Http\Controllers\accepteConroller;
+use App\Http\Controllers\LoginController; 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DemandeController;
 use App\Http\Controllers\StagiaireController;
@@ -27,7 +25,7 @@ Route::get('/not_found',function (){
 // Route::get('/', function () {
 //     return view('home');
 // })->name('home');
-Route::get('/home', [HomeController::class, 'index'])->middleware('admin');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 //login user
 Route::get('/login',[LoginController::class, 'show'])->name('login.show');
@@ -46,27 +44,7 @@ Route::get('/admin/login',[LoginController::class, 'showAdminLoginForm'])->name(
 Route::post('/admin/login',[LoginController::class,'loginAdmin'])->name('admin.login');
 //Admin resource
 Route::resource('admins',AdminController::class);
- 
-//groups routes
-Route::resource('groups',GroupController::class);
-
-//stagiaires routes
-Route::resource('stagiaires',StagiaireController::class);
-
-//absences routes
-Route::get('/absences/alert', [AbsenceController::class, 'alert'])->name('absences.alert');
-
-//route absences
-Route::resource('absences',AbsenceController::class);
-
-//demande route
-Route::get('/demandes/traiter', [DemandeController::class, 'traiter'])->name('demandes.traiter');
-
-Route::resource('demandes',DemandeController::class);
-
-Route::post('/demandes/accepte', [accepteConroller::class,'accepte'])->name('demand.accepte');
-Route::post('/demandes/delete', [accepteConroller::class,'delete'])->name('demand.delete');
-
+    
 
 Route::get('/modules',function (){
     return view('module.list_module');
@@ -93,23 +71,15 @@ Route::get('/modules/alert_avancement',function (){
 })->name('avancement');
 
 
-
-// Route::get('/demandes',function (){
-//     return view('demande.inbox_demande');
-// })->name('list_demande');
-
-
-// Route::get('/demande',function (){
-//     return view('demande.demande');
-// })->name('demande');
-// Route::get('/mydemande',function (){
-//     return view('demande.mydemende');
-// })->name('mydemende');
+Route::get('/professeurs/add',function (){
+    return view('prof.ajoute_prof');
+})->name('add_professeur');
+Route::get('/professeurs',function (){
+    return view('prof.list_prof');
+})->name('list_professeur');
+ 
 
 
-
-// routes/web.php
-Route::post('/import-excel/group', [ExcelImportController::class, 'importGroup'])->name('excel.group');
-Route::post('/import-excel/stagiaire', [ExcelImportController::class, 'importStagiaire'])->name('excel.stagiaire');
+ 
 Route::post('/import-excel/module', [ExcelImportController::class, 'importModule'])->name('excel.module');
 Route::post('/import-excel/avancement', [ExcelImportController::class, 'avancement'])->name('excel.avance_module');

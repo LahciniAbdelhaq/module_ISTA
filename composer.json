@@ -12,6 +12,8 @@
         "laravel/framework": "^10.9",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
+        "nesbot/carbon": "^2.72",
+        "phpoffice/phpspreadsheet": "^2.0",
         "yajra/laravel-datatables-oracle": "^10.11"
     },
     "require-dev": {
