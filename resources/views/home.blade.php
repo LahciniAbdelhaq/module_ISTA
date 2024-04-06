@@ -32,18 +32,18 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">{{ $demandes->count()  }}</span>
+                <span class="badge badge-warning navbar-badge"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">{{ $demandes->count() }} Demandes</span>
+                <span class="dropdown-item dropdown-header"> </span>
                 <div class="dropdown-divider"></div>
-                @foreach ($demandes as $demande)
+
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> {{ $demande->stagiaire->nom }} {{ $demande->stagiaire->prenom }} 
-                    <span class="float-right text-muted text-sm">{{ $demande->created_at->diffForHumans() }}</span>
+                    <i class="fas fa-file mr-2"></i>
+                    <span class="float-right text-muted text-sm"></span>
                 </a>
                 <div class="dropdown-divider"></div>
-                @endforeach
+
                 <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All avancemant</a>
             </div>
         </li>
@@ -121,12 +121,12 @@
               </div>
               <a href="{{ route('list_module') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div> 
+          </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner"> 
+              <div class="inner">
                 <h3>M</h3>
                 <p>Module</p>
               </div>

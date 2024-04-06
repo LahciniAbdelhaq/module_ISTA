@@ -9,9 +9,6 @@ class HomeController extends Controller
 {
     public function index(){
 
-        $demandes = Demande::orderBy('created_at','desc')
-                            ->limit(5)
-                            ->get();
-        return view('home' , compact('demandes'));
+        return view('home');
     }
 }

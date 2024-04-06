@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 return [
 
     /*
@@ -38,13 +40,9 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'stagiaires',
+            'provider' => 'users',
         ],
 
-        'admin' => [
-            'driver' => 'session',
-            'provider' => 'admins',
-        ],
     ],
 
     /*
@@ -65,15 +63,12 @@ return [
     */
 
     'providers' => [
-        'stagiaires' => [
+        'users' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Stagiaire::class,
+            'model' => User::class,
         ],
 
-        'admins' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Admin::class,
-        ],
+
     ],
     /*
     |--------------------------------------------------------------------------
