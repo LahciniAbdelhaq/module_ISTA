@@ -23,3 +23,5 @@
 
   <!-- daterange picker -->
   <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}"/>
+  <!-- jQuery -->
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>

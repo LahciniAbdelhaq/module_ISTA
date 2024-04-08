@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>   
+  <title>AdminLTE 3 | Dashboard</title>
 @include('layouts.header_links')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -23,12 +23,12 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
-      </li> 
+      </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto"> 
- 
+    <ul class="navbar-nav ml-auto">
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -53,7 +53,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -61,7 +61,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-       
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -75,20 +75,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Maryem</a>
-        </div>
-      </div> 
-      <!-- Sidebar Menu -->
-      @include('layouts.SidebarMenu')
-      <!-- /.sidebar-menu -->
-    </div>
+    @include('layouts.Sidebar')
     <!-- /.sidebar -->
   </aside>
 
@@ -97,7 +84,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2"> 
+        <div class="row mb-2">
           <div class="col-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -114,9 +101,9 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-           <div class="col-12">  
-                    
-                    <!--MDB Tables--> 
+           <div class="col-12">
+
+                    <!--MDB Tables-->
                         <div class="card mb-4">
                             <div class="card-body">
                                 <!-- Grid row -->
@@ -125,7 +112,7 @@
                                     <div class="col-md-12">
                                         <h2 class="  pb-4   font-bold font-up deep-purple-text">List Professeurs</h2>
                                         <div class="input-group md-form form-sm form-2  ">
-                                            <input class="form-control my-0 py-1 pl-3 purple-border" id="searchinput" type="text" placeholder="Search something here..." aria-label="Search"> 
+                                            <input class="form-control my-0 py-1 pl-3 purple-border" id="searchinput" type="text" placeholder="Search something here..." aria-label="Search">
                                         </div>
                                     </div>
                                     <!-- Grid column -->
@@ -136,70 +123,40 @@
                                     <!--Table head-->
                                     <thead>
                                         <tr>
+                                            <th>id</th>
                                             <th>Code professeur</th>
-                                            <th>Non et prenom</th> 
+                                            <th>Non et prenom</th>
                                             <th>more</th>
                                         </tr>
                                     </thead>
                                     <!--Table head-->
                                     <!--Table body-->
                                     <tbody>
+                                        @foreach ($professeurs as $professeur )
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark Otto</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
+                                            <th scope="row">{{ $professeur->id }}</th>
+                                            <td>{{ $professeur->code_professeur }}</td>
+                                            <td>{{ $professeur->nom_prenom }}</td>
+                                            <td><a href="" class="btn   bg-purple">
+                                                    <i class="fa-regular fa-eye"></i>
                                                 </a></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob Thornton</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry the Bird</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark Otto</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob Thornton</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
-                                                </a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">3</th>
-                                            <td>Larry the Bird</td> 
-                                            <td><a href="{{ route('info_module') }}" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i> 
-                                                </a></td>
-                                        </tr>
+                                        @endforeach
+
                                     </tbody>
                                     <!--Table body-->
                                 </table>
                                 <!--Table-->
-                            </div>  
-                      
+                            </div>
+
                         <hr class="my-4">
-                       
-            
+
+
                     </div>
                     <!--MDB Tables-->
-                    
+
            </div>
-        </div> 
+        </div>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -208,7 +165,7 @@
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="#">ISTA CITY DE L'AIR</a>.</strong>
     All rights reserved.
-     
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -219,23 +176,23 @@
 </div>
 <!-- ./wrapper -->
 
-@extends('layouts.footerjs') 
+@extends('layouts.footerjs')
 <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Get references to the input element and the table
       var searchInput = document.getElementById("searchinput");
       var dataTable = document.getElementById("example");
       var tableRows = dataTable.getElementsByTagName("tr");
-    
+
       // Add event listener for keyup event on the search input
       searchInput.addEventListener("keyup", function() {
         var searchText = searchInput.value.toLowerCase();
-    
+
         // Loop through all table rows and hide those that do not match the search query
         for (var i = 1; i < tableRows.length; i++) { // Start from index 1 to skip header row
           var rowData = tableRows[i].getElementsByTagName("td");
           var rowMatch = false;
-          
+
           for (var j = 0; j < rowData.length; j++) {
             var cellData = rowData[j].textContent.toLowerCase();
             if (cellData.indexOf(searchText) > -1) {
@@ -243,7 +200,7 @@
               break;
             }
           }
-    
+
           if (rowMatch) {
             tableRows[i].style.display = "";
           } else {
@@ -253,5 +210,18 @@
       });
     });
  </script>
+ <script>
+  $(document).ready(function() {
+      $('#example').DataTable({
+        "lengthChange": false,
+        "autoWidth": false,
+        responsive: true,
+        paging: true, // Enable pagination
+        searching: false, // Disable searching
+        ordering: false, // Disable sorting
+        info: false // Disable information display
+      });
+  });
+</script>
 </body>
 </html>

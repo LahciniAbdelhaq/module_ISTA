@@ -32,19 +32,19 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">{{ $demandes->count()  }}</span>
+                <span class="badge badge-warning navbar-badge"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">{{ $demandes->count() }} Demandes</span>
+                <span class="dropdown-item dropdown-header"> </span>
                 <div class="dropdown-divider"></div>
-                @foreach ($demandes as $demande)
+
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> {{ $demande->stagiaire->nom }} {{ $demande->stagiaire->prenom }} 
-                    <span class="float-right text-muted text-sm">{{ $demande->created_at->diffForHumans() }}</span>
+                    <i class="fas fa-file mr-2"></i>
+                    <span class="float-right text-muted text-sm"></span>
                 </a>
                 <div class="dropdown-divider"></div>
-                @endforeach
-                <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All avancemant</a>
+
+                <a href="" class="dropdown-item dropdown-footer">See All avancemant</a>
             </div>
         </li>
         <li class="nav-item">
@@ -66,20 +66,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Maryem</a>
-        </div>
-      </div>
-      <!-- Sidebar Menu -->
-      @include('layouts.SidebarMenu')
-      <!-- /.sidebar-menu -->
-    </div>
+    @include('layouts.Sidebar')
     <!-- /.sidebar -->
   </aside>
 
@@ -117,23 +104,23 @@
                 <p>all Modules</p>
               </div>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="fa-light fa-book-open-cover"></i> 
               </div>
-              <a href="{{ route('list_module') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div> 
+          </div>
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-danger">
-              <div class="inner"> 
+              <div class="inner">
                 <h3>M</h3>
-                <p>Module</p>
+                <p>avancement Module</p>
               </div>
               <div class="icon">
-                <i class="ion ion-pie-graph"></i>
+                <i class="fa-regular fa-list-check"></i>
               </div>
-              <a href="{{ route('ajoute_avancement') }}" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -54,7 +54,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ route('add_avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -77,20 +77,7 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column">
-        <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-                <img src="{{ asset('dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-                <a href="#" class="d-block">Maryem</a>
-            </div>
-        </div>
-        <!-- Sidebar Menu -->
-        @include('layouts.SidebarMenu')
-        <!-- /.sidebar-menu -->
-    </div>
+    @include('layouts.Sidebar')
     <!-- /.sidebar -->
 </aside>
   <!-- Content Wrapper. Contains page content -->
@@ -104,8 +91,8 @@
           <div class="col-sm-12">
               <ol class="breadcrumb float-sm-right">
                 <li class="breadcrumb-item ">Dashboard </li>
-                <li class="breadcrumb-item"><a href="{{ route('list_module') }}">modules</a></li>
-              <li class="breadcrumb-item active"><a href="{{ route('ajoute_module') }}">Ajouter module</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('modules.index') }}">modules</a></li>
+              <li class="breadcrumb-item active"><a href="{{ route('modules.create') }}">Ajouter module</a></li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -132,11 +119,16 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group">
-                                  <label>code Module</label> 
-                                  <input class="form-control @error('name') is-invalid @enderror" type="text" name="" id="" style="width: 100%;">
-                                  <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                                </div>  
+                              <div class="form-group">
+                                <label>Module</label>  
+                                <select class="form-control @error('module_code') is-invalid @enderror" style="width: 100%;" name="module_code">
+                                  <option >Comptabilité générale 1</option> 
+                                  <option >Préparation à la certification Excel expert</option> 
+                                  <option >Préparation à la certification Excel expert</option> 
+                                  <option >Compétences comportementales</option> 
+                                </select> 
+                                <div class="invalid-feedback">{{ $errors->first('module_code') }}</div>
+                              </div> 
                             </div>
                             <div
                               class="row justify-content-center align-items-center"
@@ -145,8 +137,8 @@
                             <div class="col-6">
                               <div class="form-group">
                                   <label>Affectée Globale distanciel S1</label>  
-                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
-                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                      <input type="number"   class="form-control @error('nbr_pre_s_1') is-invalid @enderror" name="nbr_pre_s_1"> 
+                                      <div class="invalid-feedback">{{ $errors->first('nbr_pre_s_1') }}</div>
                                 
                               </div>  
                             </div>
@@ -155,8 +147,8 @@
                             <div class="col-6">
                               <div class="form-group">
                                   <label>Affectée Globale distanciel S2</label>  
-                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
-                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                      <input type="number"   class="form-control @error('nbr_dis_s_2') is-invalid @enderror" name="nbr_dis_s_2"> 
+                                      <div class="invalid-feedback">{{ $errors->first('nbr_dis_s_2') }}</div>
                                 
                               </div>  
                             </div>
@@ -167,10 +159,15 @@
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>code Prof</label> 
-                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="" id="" style="width: 100%;">
-                                <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                              </div>  
+                                <label>Prof</label>  
+                                <select class="form-control @error('professeur_code') is-invalid @enderror" style="width: 100%;" name="professeur_code">
+                                  <option >SIHAM BARI</option>
+                                  <option>ZAHRA LIDDER</option> 
+                                  <option>YASSINE EL KHATIBI</option>
+                                  <option>CHIMAE LAKHAL</option> 
+                                </select> 
+                                <div class="invalid-feedback">{{ $errors->first('professeur_code') }}</div>
+                              </div>
                           </div>
                           <!-- /.col -->
                           <div
@@ -179,9 +176,9 @@
                               <!-- /.form-group -->
                             <div class="col-6">
                               <div class="form-group">
-                                  <label>Affectée Globale présentiel S1</label>  
-                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
-                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                  <label>Affectée Globale présentiel S2</label>  
+                                      <input type="number"   class="form-control @error('nbr_pre_s_2') is-invalid @enderror" name="nbr_pre_s_2"> 
+                                      <div class="invalid-feedback">{{ $errors->first('nbr_pre_s_2') }}</div>
                                 
                               </div>  
                             </div>
@@ -190,8 +187,8 @@
                             <div class="col-6">
                               <div class="form-group">
                                   <label>Affectée Globale présentiel S2</label>  
-                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
-                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                      <input type="number"   class="form-control @error('nbr_dis_s_2') is-invalid @enderror" name="nbr_dis_s_2"> 
+                                      <div class="invalid-feedback">{{ $errors->first('nbr_dis_s_2') }}</div>
                                 
                               </div>  
                             </div>
@@ -204,7 +201,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                   <label>group</label>  
-                                  <select class="form-control @error('name') is-invalid @enderror" style="width: 100%;">
+                                  <select class="form-control @error('group_code') is-invalid @enderror" style="width: 100%;" name="group_code">
                                     <option >GES102</option>
                                     <option>GES102</option> 
                                     <option>GES201</option>
@@ -212,8 +209,16 @@
                                     <option>DEV102</option>
                                     <option>DEV202</option>
                                   </select> 
-                                  <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                  <div class="invalid-feedback">{{ $errors->first('group_code') }}</div>
                                 </div>  
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label>nombere horaire par semaine</label>  
+                                      <input type="number"   class="form-control @error('nbr_h_semaine') is-invalid @enderror" name="nbr_h_semaine"> 
+                                      <div class="invalid-feedback">{{ $errors->first('nbr_h_semaine') }}</div>
+                                
+                              </div> 
                               </div>
                           </div>
                           <button type="submit" class="btn btn-primary">Submit</button>

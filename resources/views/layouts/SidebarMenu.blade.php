@@ -1,6 +1,6 @@
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-  
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fas fa-book"></i>
@@ -11,25 +11,25 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('list_module') }}" class="nav-link">
+            <a href="{{ route('modules.index') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>list modules</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('ajoute_module') }}" class="nav-link">
+            <a href="{{ route('modules.create') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>ajouter module</p>
             </a>
           </li> 
           <li class="nav-item">
-            <a href="{{ route('ajoute_avancement') }}" class="nav-link">
+            <a href="{{ route('add_avancement') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>ajoute l’avancement de programme  </p>
             </a>
           </li>
         </ul>
-      </li>  
+      </li>
 
     </ul>
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -43,7 +43,7 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('avancement') }}" class="nav-link">
+            <a href="" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>alert l’avancement  </p>
             </a>
@@ -52,7 +52,7 @@
       </li>
     </ul>
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-  
+
       <li class="nav-item">
         <a href="#" class="nav-link">
           <i class="nav-icon fa-duotone fa-user-tie"></i> 
@@ -63,19 +63,19 @@
         </a>
         <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{ route('list_professeur') }}" class="nav-link">
+            <a href="{{ route('professeurs.index') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>list prof</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('add_professeur') }}" class="nav-link">
+            <a href="{{ route('professeurs.create') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>ajouter prof</p>
             </a>
-          </li>  
+          </li>
         </ul>
-      </li>  
+      </li>
 
     </ul>
   </nav>

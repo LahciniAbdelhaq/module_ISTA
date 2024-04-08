@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AdminRequest;
-use App\Models\Admin;
+use App\Http\Requests\ModuleRequest;
+use App\Models\Module;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class ModuleController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $modules = Module::all();
+         return view('module.list_module' , compact('modules'));
     }
 
     /**
@@ -22,25 +22,26 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+
+        return view('module.ajouter_module');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AdminRequest $request)
+    public function store(ModuleRequest $request)
     {
-        $formFields = $request->validated();
-        $formFields['password'] = Hash::make($request->password);
-        // dd($formFields);
-        Admin::create($formFields);
-        return view('auth.admin-login');
+        $formFeilds = $request->validated();
+        Module::create($formFeilds);
+        // dd($formFeilds);
+        return redirect()->route('modules.index');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Admin $admin)
+    public function show(string $id)
     {
         //
     }
@@ -48,7 +49,7 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admin $admin)
+    public function edit(string $id)
     {
         //
     }
@@ -56,7 +57,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -64,7 +65,7 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admin $admin)
+    public function destroy(string $id)
     {
         //
     }

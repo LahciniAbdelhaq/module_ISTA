@@ -4,37 +4,26 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Group extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
 
+    protected $primaryKey = 'code_group';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
-    protected $fillable =['code_group','anne_formation','nbr_stagiaires','nom_ilière'];
 
-    /**
-     * Get the stagiaires associated with the group.
-     */
-    public function stagiaires()
-    {
-        return $this->hasMany(Stagiaire::class);
+    public function professeurs(){
+
+        return $this->hasMany(Professeur::class , 'code_group');
+
     }
 
-    /**
-     * Get the absences associated with the group.
-     */
-    public function absences()
-    {
-        return $this->hasMany(Absence::class);
-    }
+    public function modules(){
 
-    /**
-     * Get the demandes associated with the group.
-     */
-    public function demandes()
-    {
-        return $this->hasMany(Demande::class);
+        return $this->hasMany(Module::class , 'code_group');
+
     }
 }

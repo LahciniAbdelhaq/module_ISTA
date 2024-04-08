@@ -1,13 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GroupController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\DemandeController;
-use App\Http\Controllers\StagiaireController;
 use App\Http\Controllers\ExcelImportController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,67 +17,36 @@ use App\Http\Controllers\HomeController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/not_found',function (){
-    return view('not_found');
+
+Route::get('/', function () {
+    return view('welcome');
 });
-// Route::get('/', function () {
-//     return view('home');
-// })->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
-//login user
-Route::get('/login',[LoginController::class, 'show'])->name('login.show');
-Route::post('/login',[LoginController::class, 'login'])->name('login');
-//logout
-Route::get('/logout',[LoginController::class, 'logout'])->name('logout.logout');
 
- 
-//register routes
-Route::get('/register',function (){
-    return view('auth.register');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+
+Route::middleware('admin')->group(function () {
+    Route::get('/home',[HomeController::class, 'index'])->name('home');
+    Route::resource('modules' , ModuleController::class);
+    Route::resource('professeurs' , ProfesseurController::class);
+    Route::get('/avencemant',function (){
+        return view('module.ajoute_avancemant');
+    })->name('add_avancement'); 
 });
- 
-//login admin
-Route::get('/admin/login',[LoginController::class, 'showAdminLoginForm'])->name('admin.login-show');
-Route::post('/admin/login',[LoginController::class,'loginAdmin'])->name('admin.login');
-//Admin resource
-Route::resource('admins',AdminController::class);
-    
-
-Route::get('/modules',function (){
-    return view('module.list_module');
-})->name('list_module');
-
-Route::get('/modules/id',function (){
-    return view('module.module');
-})->name('module');
-
-Route::get('/modules/ajoute',function (){
-    return view('module.ajouter_module');
-})->name('ajoute_module');
-
-Route::get('/modules/ajoute-avancement',function (){
-    return view('module.ajoute_avancemant');
-})->name('ajoute_avancement');
-
-Route::get('/modules/avancement',function (){
-    return view('module.avencemen');
-})->name('info_module');
-
-Route::get('/modules/alert_avancement',function (){
-    return view('module.alert_avancement');
-})->name('avancement');
 
 
-Route::get('/professeurs/add',function (){
-    return view('prof.ajoute_prof');
-})->name('add_professeur');
-Route::get('/professeurs',function (){
-    return view('prof.list_prof');
-})->name('list_professeur');
- 
-
-
- 
+// exel import
+Route::post('/import-excel/prof', [ExcelImportController::class, 'importProf'])->name('excel.Prof');
 Route::post('/import-excel/module', [ExcelImportController::class, 'importModule'])->name('excel.module');
 Route::post('/import-excel/avancement', [ExcelImportController::class, 'avancement'])->name('excel.avance_module');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';
