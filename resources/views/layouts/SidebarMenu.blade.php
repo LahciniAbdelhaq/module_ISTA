@@ -21,14 +21,7 @@
               <i class="far fa-circle nav-icon"></i>
               <p>ajouter module</p>
             </a>
-          </li>
-
-          <li class="nav-item">
-            <a href="{{ route('avancement') }}" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>alert l’avancement  </p>
-            </a>
-          </li>
+          </li> 
           <li class="nav-item">
             <a href="{{ route('ajoute_avancement') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
@@ -40,10 +33,29 @@
 
     </ul>
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          <i class="nav-icon fal fa-exclamation-triangle"></i>
+          <p>
+            alerts
+            <i class="fas fa-angle-left right"></i>
+          </p>
+        </a>
+        <ul class="nav nav-treeview">
+          <li class="nav-item">
+            <a href="{{ route('avancement') }}" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>alert l’avancement  </p>
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
   
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-book"></i>
+          <i class="nav-icon fa-duotone fa-user-tie"></i> 
           <p>
             Prof
             <i class="fas fa-angle-left right"></i>

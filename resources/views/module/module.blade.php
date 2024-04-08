@@ -114,7 +114,8 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row"> 
-        <div class="info-box col-12"> 
+        <div class="info-box "> 
+          <form action="" method="get" id="myForm" class="col-12">
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -167,6 +168,7 @@
                 
                 <!-- /.row -->
               </div>
+            </form>
             <!-- /.card-body -->
               
         <!-- /.card-body -->
@@ -191,6 +193,7 @@
         <!-- Message will be dynamically inserted here -->
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="submitFormBtn">Submit</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
     </div>
@@ -226,105 +229,7 @@
         });
 </script>
  
-
-{{-- <script>
-  function calculateEndDate(startDate, weeklyStudyHours, totalHoursRequired, hoursRealisee) {
-    // Split the start date into day, month, and year components
-    const [startDay, startMonth, startYear] = startDate.split('/');
-    
-    // Create a Date object for the start date
-    const startDateObj = new Date(startYear, startMonth - 1, startDay); // Months are 0-indexed in JavaScript
-    
-    // Calculate the total number of weeks required
-    const totalRemainingHours = totalHoursRequired - hoursRealisee;
-    const weeksRequired = Math.ceil(totalRemainingHours / weeklyStudyHours);
-    
-    // Calculate the end date
-    const endDateObj = new Date(startDateObj.getTime() + weeksRequired * 7 * 24 * 60 * 60 * 1000);
-    
-    // Format the end date as DD/MM/YYYY
-    const endDate = `${endDateObj.getDate()}/${endDateObj.getMonth() + 1}/${endDateObj.getFullYear()}`;
-    
-    return endDate;
-  }
-
-  // Example usage:
-  const startDate = '20/03/2024';
-  const weeklyStudyHours = 5;
-  const totalHoursRequired = 40;
-  const hoursRealisee = 20;
-
-  const endDate = calculateEndDate(startDate, weeklyStudyHours, totalHoursRequired, hoursRealisee);
-  console.log(`End date: ${endDate}`);
-</script> --}}
-{{-- <script>
-  function calculateEndDate(startDate, weeklyStudyHours, totalHoursRequired, hoursRealisee) {
-    // Convert start date to a Date object
-    const [startDay, startMonth, startYear] = startDate.split('/');
-    const startDateObj = new Date(`${startYear}-${startMonth}-${startDay}`);
-    
-    // Calculate the total number of weeks required
-    const totalRemainingHours = totalHoursRequired - hoursRealisee;
-    const totalWeeksRequired = Math.ceil(totalRemainingHours / weeklyStudyHours);
-    
-    // Calculate the end date based on the total number of weeks required
-    const endDateObj = new Date(startDateObj.getTime() + totalWeeksRequired * 7 * 24 * 60 * 60 * 1000);
-    
-    // Format the end date as DD/MM/YYYY
-    const endDate = `${endDateObj.getDate()}/${endDateObj.getMonth() + 1}/${endDateObj.getFullYear()}`;
-    
-    return endDate;
-  }
-
-  function willCompleteOnTime(startDate, endDate, weeklyStudyHours, totalHoursRequired, hoursRealisee) {
-    // Calculate end date if it's not provided
-    if (!endDate) {
-      endDate = calculateEndDate(startDate, weeklyStudyHours, totalHoursRequired, hoursRealisee);
-    }
-    
-    // Convert start and end dates to Date objects
-    const [startDay, startMonth, startYear] = startDate.split('/');
-    const [endDay, endMonth, endYear] = endDate.split('/');
-    const startDateObj = new Date(`${startYear}-${startMonth}-${startDay}`);
-    const endDateObj = new Date(`${endYear}-${endMonth}-${endDay}`);
-    
-    // Calculate the total number of days between start and end dates
-    const totalDays = Math.ceil((endDateObj - startDateObj) / (1000 * 60 * 60 * 24));
-    
-    // Calculate total remaining hours required to complete the program
-    const totalRemainingHours = totalHoursRequired - hoursRealisee;
-    
-    // Calculate the total number of weeks required based on the weekly study hours
-    const totalWeeksRequired = Math.ceil(totalRemainingHours / weeklyStudyHours);
-    
-    // Calculate the total number of days required
-    const totalDaysRequired = totalWeeksRequired * 7;
-    
-    // Determine if the program will be completed on time
-    const willCompleteOnTime = totalDays <= totalDaysRequired;
-    
-    // Output message
-    let message;
-    if (willCompleteOnTime) {
-      message = `Will complete on time. End date: ${endDate}`;
-    } else {
-      message = `Will not complete on time. End date: ${endDate}`;
-    }
-    
-    return message;
-  }
-
-  // Example usage:
-  const startDate = '20/03/2024';
-  const endDate = ''; // Empty endDate
-  const weeklyStudyHours = 5;
-  const totalHoursRequired = 40;
-  const hoursRealisee = 10;
-
-  const completionStatus = willCompleteOnTime(startDate, endDate, weeklyStudyHours, totalHoursRequired, hoursRealisee);
-  
-  console.log(completionStatus);
-</script> --}}
+ 
 <script>
   function showCompletionMessage(message) {
     // Set the message in the modal body
@@ -333,6 +238,12 @@
     // Show the modal
     $('#myModal').modal('show');
   }
+  document.getElementById('submitFormBtn').addEventListener('click', function() {
+    // Perform form submission logic here
+    document.getElementById('myForm').submit();
+    // After submission, you can close the modal if needed
+    $('#myModal').modal('hide');
+  });
   function calculateEndDate(startDate, weeklyStudyHours, totalHoursRequired, hoursRealisee) {
     // Split the start date into day, month, and year components
     const [startDay, startMonth, startYear] = startDate.split('/');
@@ -386,7 +297,8 @@
     showCompletionMessage(message);
   }
 
-  function handleSaveButtonClick() {
+  function handleSaveButtonClick(e) {
+    e.preventDefault();
     // Get the value of the date input field
     const startDate = document.getElementById('startDate').value;
     const entDate = document.getElementById('endDate').value;
@@ -394,7 +306,7 @@
     // Check if weeklyStudyHours has a value
     if (weeklyStudyHours && startDate) { 
         // Other parameters needed for the calculation
-        const totalHoursRequired = 40;
+        const totalHoursRequired = 120;
         const hoursRealisee = 20;
 
         // Check if endDate is empty

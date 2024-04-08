@@ -138,10 +138,10 @@
                                         <tr>
                                             <th>Code Module</th>
                                             <th>module</th>
-                                            <th>nombre horaire</th>
                                             <th>Régional</th>
                                             <th>MH Presentiel</th>
                                             <th>MH distanciel</th>
+                                            <th>nombre horaire</th>
                                             <th>more</th>
                                         </tr>
                                     </thead>

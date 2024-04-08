@@ -138,26 +138,65 @@
                                   <div class="invalid-feedback">{{ $errors->first('name') }}</div>
                                 </div>  
                             </div>
+                            <div
+                              class="row justify-content-center align-items-center"
+                            >
+                              <!-- /.form-group -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                  <label>Affectée Globale distanciel S1</label>  
+                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
+                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                
+                              </div>  
+                            </div>
+                          <!-- /.form-group -->
                             <!-- /.form-group -->
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label>Affectée Globale distanciel</label>  
-                                        <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
-                                        <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                                  
-                                </div>  
-                              </div>
-                            <!-- /.form-group -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                  <label>Affectée Globale distanciel S2</label>  
+                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
+                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                
+                              </div>  
+                            </div>
+                          <!-- /.form-group -->
+                            </div>
+                            
                           </div>
                           <div class="row">
-                          <!-- /.col -->
-                          <div class="col-md-6">
-                            <div class="form-group">
-                                  <label>Affectée Globale présentiel</label> 
-                                  <input class="form-control @error('name') is-invalid @enderror" type="number" name="" id="" style="width: 100%;">
-                                  <div class="invalid-feedback">{{ $errors->first('name') }}</div>
-                            </div>  
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>code Prof</label> 
+                                <input class="form-control @error('name') is-invalid @enderror" type="text" name="" id="" style="width: 100%;">
+                                <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                              </div>  
                           </div>
+                          <!-- /.col -->
+                          <div
+                              class="row justify-content-center align-items-center"
+                            >
+                              <!-- /.form-group -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                  <label>Affectée Globale présentiel S1</label>  
+                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
+                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                
+                              </div>  
+                            </div>
+                          <!-- /.form-group -->
+                            <!-- /.form-group -->
+                            <div class="col-6">
+                              <div class="form-group">
+                                  <label>Affectée Globale présentiel S2</label>  
+                                      <input type="number"   class="form-control @error('name') is-invalid @enderror"> 
+                                      <div class="invalid-feedback">{{ $errors->first('name') }}</div>
+                                
+                              </div>  
+                            </div>
+                          <!-- /.form-group -->
+                            </div>
                           
                           <!-- /.col -->
                           </div>
