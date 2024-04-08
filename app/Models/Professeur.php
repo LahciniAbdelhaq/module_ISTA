@@ -14,6 +14,7 @@ class Professeur extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = ['code_professeur' , 'nom_prenom'];
 
     public function groups(){
 

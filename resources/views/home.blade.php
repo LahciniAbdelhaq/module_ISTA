@@ -44,7 +44,7 @@
                 </a>
                 <div class="dropdown-divider"></div>
 
-                <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All avancemant</a>
+                <a href="" class="dropdown-item dropdown-footer">See All avancemant</a>
             </div>
         </li>
         <li class="nav-item">
@@ -119,7 +119,7 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="{{ route('list_module') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -133,7 +133,7 @@
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="{{ route('ajoute_avancement') }}" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ModuleController;
+use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,13 +21,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
 Route::middleware('admin')->group(function () {
-    
+    Route::get('/home',[HomeController::class, 'index'])->name('home');
+    Route::resource('modules' , ModuleController::class);
+    Route::resource('professeurs' , ProfesseurController::class);
+
 });
 
 

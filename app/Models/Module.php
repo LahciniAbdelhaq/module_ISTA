@@ -14,6 +14,8 @@ class Module extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = ['code_module' , 'nom_module', 'regionale' ,'mh_presentiel' , 'mh_distance' , 'nombre_total'];
+
     public function groups(){
 
         return $this->belongsToMany(Group::class ,'code_module');
