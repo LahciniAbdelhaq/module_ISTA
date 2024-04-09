@@ -117,8 +117,8 @@
                                     </div>
                                     <!-- Grid column -->
                                 </div>
-                                <!-- Grid row --> 
-                                
+                                <!-- Grid row -->
+
                                 <!--Table-->
                                 <table class="table table-striped" id="example">
                                     <!--Table head-->
@@ -144,14 +144,14 @@
                                         <td>{{ $module->mh_presentiel }}</td>
                                         <td>{{ $module->mh_distance }}</td>
                                         <td>{{ $module->nombre_total }}</td>
-                                        <td><a href="" class="btn   bg-purple">
+                                        <td><a href="{{ route('modules.show' , $module->id) }}" class="btn   bg-purple">
                                                 <i class="fa-regular fa-eye"></i>
                                             </a></td>
                                     </tr>
                                        @endforeach
 
                                     </tbody>
-                                </table> 
+                                </table>
                             </div>
 
                         <hr class="my-4">
@@ -228,6 +228,6 @@
       });
     });
  </script>
- 
+
 </body>
 </html>

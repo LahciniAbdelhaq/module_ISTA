@@ -1,29 +1,23 @@
 <?php
-
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Group extends Model
 {
-    use HasFactory;
-
-
     protected $primaryKey = 'code_group';
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = [
+        'code_group',
+        'anne_formation',
+        'nbr_stagiaires',
+        'nom_ilière',
+    ];
 
-    public function professeurs(){
-
-        return $this->hasMany(Professeur::class , 'code_group');
-
-    }
-
-    public function modules(){
-
-        return $this->hasMany(Module::class , 'code_group');
-
+    public function groupProfesseurModules()
+    {
+        return $this->hasMany(GroupProfesseurModule::class, 'group_code', 'code_group');
     }
 }

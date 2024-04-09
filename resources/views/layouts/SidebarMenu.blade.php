@@ -21,9 +21,9 @@
               <i class="far fa-circle nav-icon"></i>
               <p>ajouter module</p>
             </a>
-          </li> 
+          </li>
           <li class="nav-item">
-            <a href="{{ route('add_avancement') }}" class="nav-link">
+            <a href="{{ route('groupsProfesseursmodules.create') }}" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>ajoute l’avancement de programme  </p>
             </a>
@@ -55,7 +55,7 @@
 
       <li class="nav-item">
         <a href="#" class="nav-link">
-          <i class="nav-icon fa-duotone fa-user-tie"></i> 
+          <i class="nav-icon fa-duotone fa-user-tie"></i>
           <p>
             Prof
             <i class="fas fa-angle-left right"></i>

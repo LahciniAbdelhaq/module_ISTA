@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AvancemantController;
 use App\Http\Controllers\ExcelImportController;
+use App\Http\Controllers\GroupProfesseurModuleController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfesseurController;
@@ -31,10 +33,8 @@ Route::get('/dashboard', function () {
 Route::middleware('admin')->group(function () {
     Route::get('/home',[HomeController::class, 'index'])->name('home');
     Route::resource('modules' , ModuleController::class);
-    Route::resource('professeurs' , ProfesseurController::class);
-    Route::get('/avencemant',function (){
-        return view('module.ajoute_avancemant');
-    })->name('add_avancement'); 
+    Route::resource('professeurs', ProfesseurController::class);
+    Route::resource('groupsProfesseursmodules' , GroupProfesseurModuleController::class);
 });
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Group;
+use App\Models\GroupProfesseurModule;
 use App\Models\Professeur;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class ProfesseurController extends Controller
     {
 
         $professeurs = Professeur::all();
-        $groups = Group::all(); 
+        // $groups = Group::all();
+        // dd($groups);
         return view('prof.list_prof' , compact('professeurs'));
     }
 
@@ -46,9 +48,10 @@ class ProfesseurController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Professeur $professeur )
     {
-        //
+        $groupProfesseurModules = GroupProfesseurModule::all();
+        return view('module.avencemen' , compact('groupProfesseurModules'));
     }
 
     /**

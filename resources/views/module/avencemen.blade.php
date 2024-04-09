@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Dashboard</title>   
+  <title>AdminLTE 3 | Dashboard</title>
 @include('layouts.header_links')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -23,12 +23,12 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
-      </li> 
+      </li>
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto"> 
- 
+    <ul class="navbar-nav ml-auto">
+
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
@@ -53,7 +53,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -61,7 +61,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-       
+
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -84,7 +84,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2"> 
+        <div class="row mb-2">
           <div class="col-12">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -100,18 +100,20 @@
     <section class="content">
       <div class="container-fluid ">
         <!-- Small boxes (Stat box) -->
-         
+
         </div>
+
         <div class="row">
-           <div class="col-12">  
+            @foreach ($groupProfesseurModules as $groupProfesseurModule )
+           <div class="col-12">
             <div class="alert border-success info-box ">
               <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
                 <div class="info-box-content ">
                   <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
+                    <span class="info-box-text">{{$groupProfesseurModule->professeur->nom_prenom }}</span>
+                    <a href=""><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
                   </div>
-                  <span class="info-box-number">nom Group</span>
+                  <span class="info-box-number">nom Group : {{ $groupProfesseurModule->group->code_group }}</span>
                   <div class="d-flex align-items-center"  >
                     <div class="progress" style="width: 90%">
                       <div class="progress-bar bg-info " style="width: 70%"></div>
@@ -123,96 +125,15 @@
                   </span>
                 </div>
               </div>
+              @endforeach
         </div>
-        <div class="col-12">  
-            <div class="alert border-success info-box">
-                <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content">
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 20%"></div>
-                    </div>
-                    <span>20%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12">  
-            <div class="alert border-success info-box">
-              <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content">
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 730%"></div>
-                    </div>
-                    <span>30%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12">  
-            <div class="info-box ">
-              <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content">
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 50%"></div>
-                    </div>
-                    <span>50%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12"> 
-           
-          <div class=" alert border-warning   info-box">
-            <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-            <div class="info-box-content">
-              <div class=" d-flex justify-content-between">
-                <span class="info-box-text">Nom & prenom fromateur</span>
-                <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-              </div>
-              <span class="info-box-number">nom Group</span>
-              <div class="d-flex align-items-center"  >
-                <div class="progress" style="width: 90%">
-                  <div class="progress-bar bg-info " style="width: 30%"></div>
-                </div>
-                <span>30%</span>
-              </div>
-              <span class="description">
-                message status davancement
-              </span>
-            </div>
-          </div>
-         
-        </div> 
-        
+
+
+
+
+
            </div>
-        </div> 
+        </div>
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
@@ -221,7 +142,7 @@
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="#">ISTA CITY DE L'AIR</a>.</strong>
     All rights reserved.
-     
+
   </footer>
 
   <!-- Control Sidebar -->
@@ -232,7 +153,7 @@
 </div>
 <!-- ./wrapper -->
 
-@extends('layouts.footerjs') 
- 
+@extends('layouts.footerjs')
+
 </body>
 </html>

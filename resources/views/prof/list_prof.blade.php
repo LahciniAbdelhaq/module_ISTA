@@ -137,9 +137,10 @@
                                             <th scope="row">{{ $professeur->id }}</th>
                                             <td>{{ $professeur->code_professeur }}</td>
                                             <td>{{ $professeur->nom_prenom }}</td>
-                                            <td><a href="" class="btn   bg-purple">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </a></td>
+                                            <td><a href="{{ route('professeurs.show',$professeur) }}" class="btn   bg-purple">
+                                                <i class="fa-regular fa-eye"></i>
+                                            </a></td>
+                                    </tr>
                                         </tr>
                                         @endforeach
 
