@@ -33,27 +33,19 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge">{{ count($notCompletedOnTime)}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{ count($notCompletedOnTime)}} Notifications</span>
+          @if ($notCompletedOnTime)
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">3 mins</span>
+            <i class="fas fa-file mr-2"></i> count($notCompletedOnTime) new reports 
           </a>
+          @endif
+            
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ route('avancemant.index') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -87,7 +79,7 @@
         <div class="row mb-2"> 
           <div class="col-sm-12">
             <ol class="breadcrumb float-sm-right"> 
-              <li class="breadcrumb-item   "><a href="{{ route('info_module') }}">avancement</a></li> 
+              <li class="breadcrumb-item   "><a href=" ">avancement</a></li> 
               <li class="breadcrumb-item">Dashboard </li>
             </ol>
           </div><!-- /.col -->
@@ -102,7 +94,10 @@
         <!-- Small boxes (Stat box) -->
         <div class="row"> 
         <div class="info-box "> 
-          <form action="" method="get" id="myForm" class="col-12">
+          <form action="{{ route('avancemant.update',$groupProfesseurModules->id) }}" method="post" id="myForm" class="col-12">
+            @csrf
+            @method('PUT')
+            {{-- {{ method_field('PUT') }} --}}
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
@@ -112,7 +107,7 @@
   
                     <div class="input-group">  
                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                            <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" id="startDate"/>
+                            <input type="text" name="date_debut" class="form-control datetimepicker-input" data-target="#reservationdate" id="startDate" value="{{ $groupProfesseurModules->date_debut }}"/>
                             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                             </div>
@@ -129,7 +124,7 @@
     
                       <div class="input-group">  
                           <div class="input-group date" id="reservationdate1" data-target-input="nearest">
-                              <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate1" id="endDate"/>
+                              <input type="text" name="date_Efm"  class="form-control datetimepicker-input" data-target="#reservationdate1" id="endDate" value="{{ $groupProfesseurModules->date_Efm }}" />
                               <div class="input-group-append" data-target="#reservationdate1" data-toggle="datetimepicker">
                                   <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                               </div>
@@ -144,7 +139,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                           <label>nombre séance  par semaine</label> 
-                          <input class="form-control" type="number" value="3" name="" id="nbrSeance" style="width: 100%;">
+                          <input class="form-control" name="nbr_h_semaine" type="number" value="{{ $groupProfesseurModules->nbr_h_semaine }}" name="" id="nbrSeance" style="width: 100%;">
                     </div>  
                   </div> 
                   
@@ -261,15 +256,16 @@
     const startDateObj = new Date(`${startYear}-${startMonth}-${startDay}`);
     const endDateObj = new Date(`${endYear}-${endMonth}-${endDay}`);  
     // Calculate the total number of days between start and end dates
-    const totalDays = Math.ceil((endDateObj - startDateObj) / (1000 * 60 * 60 * 24)); 
+    const totalDays = Math.ceil((endDateObj - startDateObj) / (1000 * 60 * 60 * 24));
+    
     // Calculate total remaining hours required to complete the program
     const totalRemainingHours = totalHoursRequired - hoursRealisee;
+    
     // Calculate the total number of weeks required based on the weekly study hours
     const totalWeeksRequired = Math.ceil(totalRemainingHours / weeklyStudyHours);  
-    
     // Calculate the total number of days required
-    const totalDaysRequired = totalWeeksRequired * 7;
-    
+    const totalDaysRequired = totalWeeksRequired * 7; 
+
     // Determine if the program will be completed on time
     const willCompleteOnTime = totalDays >= totalDaysRequired;  
     // Output message
@@ -289,13 +285,13 @@
     // Get the value of the date input field
     const startDate = document.getElementById('startDate').value;
     const entDate = document.getElementById('endDate').value;
-    const weeklyStudyHours = document.getElementById('nbrSeance').value; 
+    const weeklyStudyHours = document.getElementById('nbrSeance').value;  
     // Check if weeklyStudyHours has a value
-    if (weeklyStudyHours && startDate) { 
+    if (weeklyStudyHours > 0 && startDate) { 
         // Other parameters needed for the calculation
-        const totalHoursRequired = 120;
-        const hoursRealisee = 20;
-
+        const totalHoursRequired = {{ $groupProfesseurModules->module->nombre_total }};
+        const hoursRealisee = {{ $groupProfesseurModules->nbr_pre_s_1 + $groupProfesseurModules->nbr_pre_s_2 +$groupProfesseurModules->nbr_dis_s_1 +$groupProfesseurModules->nbr_dis_s_2}};
+           
         // Check if endDate is empty
         if (endDate.value === '') { 
 

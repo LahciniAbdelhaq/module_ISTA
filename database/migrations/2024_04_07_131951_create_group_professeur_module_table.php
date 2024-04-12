@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('group_code');
             $table->string('professeur_code');
             $table->string('module_code');
-            $table->integer('nbr_h_semaine');
+            $table->string('date_debut')->default('');
+            $table->string('date_Efm')->default('');
+            $table->integer('nbr_h_semaine')->default(0);
             $table->integer('nbr_pre_s_1');
             $table->integer('nbr_pre_s_2');
             $table->integer('nbr_dis_s_1');
@@ -24,9 +26,9 @@ return new class extends Migration
             $table->timestamps();
 
             // Define foreign key constraints
-            $table->foreign('group_code')->references('code_group')->on('groups')->onDelete('cascade');
-            $table->foreign('professeur_code')->references('code_professeur')->on('professeurs')->onDelete('cascade');
-            $table->foreign('module_code')->references('code_module')->on('modules')->onDelete('cascade');
+            $table->foreign('group_code')->references('code_group')->on('groups')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('professeur_code')->references('code_professeur')->on('professeurs')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('module_code')->references('code_module')->on('modules')->onDelete('cascade')->onUpdate('cascade');
         });
 
 

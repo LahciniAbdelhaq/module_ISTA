@@ -33,27 +33,19 @@
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge">{{ count($notCompletedOnTime)}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{ count($notCompletedOnTime)}} Notifications</span>
+          @if ($notCompletedOnTime)
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">3 mins</span>
+            <i class="fas fa-file mr-2"></i> count($notCompletedOnTime) new reports 
           </a>
+          @endif
+            
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="{{ route('avancement') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ route('avancemant.index') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -87,7 +79,7 @@
         <div class="row mb-2"> 
           <div class="col-12">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{ route('avancement') }}">Alert avancement</a></li>
+              <li class="breadcrumb-item"><a href="{{ route('avancemant.index') }}">Alert avancement</a></li>
               <li class="breadcrumb-item active">Dashboard </li>
             </ol>
           </div><!-- /.col -->
@@ -101,118 +93,28 @@
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
         <div class="row">
-           <div class="col-12">  
-            <div class="alert border-danger info-box">
-              <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content ">
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 70%"></div>
-                    </div>
-                    <span>70%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12">  
-            <div class="alert border-danger info-box">
-              <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content">
-                  <div class=" d-flex justify-content-between">
-                  <span class="info-box-text">Nom & prenom fromateur</span>
-                  <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 20%"></div>
-                    </div>
-                    <span>20%</span>
-                  </div>
-                 
-                    <span class="description">
-                      message status davancement
-                    </span>
-                    
-                </div>
-              </div>
-        </div>
-        <div class="col-12">  
-            <div class="alert border-danger info-box">
-                <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content"> 
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 70%"></div>
-                    </div>
-                    <span>70%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12">  
-            <div class="alert border-danger info-box">
-              <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-                <div class="info-box-content">
-                  <div class=" d-flex justify-content-between">
-                    <span class="info-box-text">Nom & prenom fromateur</span>
-                    <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-                  </div>
-                  <span class="info-box-number">nom Group</span>
-                  <div class="d-flex align-items-center"  >
-                    <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 60%"></div>
-                    </div>
-                    <span>60%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
-                </div>
-              </div>
-        </div>
-        <div class="col-12"> 
-           
-          <div class=" alert border-danger  info-box">
+          @foreach ($notCompletedOnTime as $groupProfesseurModule )
+         <div class="col-12">
+          <div class="alert border-danger info-box ">
             <span class="info-box-icon bg-info"><i class="fa-light fa-book"></i></span>
-            <div class="info-box-content">
-              <div class=" d-flex justify-content-between">
-                <span class="info-box-text">Nom & prenom fromateur</span>
-                <a href="{{ route('module') }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
-              </div>
-              <span class="info-box-number">nom Group</span>
-              <div class="d-flex align-items-center"  >
-                <div class="progress" style="width: 90%">
-                  <div class="progress-bar bg-info " style="width: 10%"></div>
+              <div class="info-box-content ">
+                <div class=" d-flex justify-content-between">
+                  <span class="info-box-text">{{$groupProfesseurModule->professeur->nom_prenom }}</span>
+                  <a href="{{ route('avancemant.show', $groupProfesseurModule->id ) }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
                 </div>
-                <span>10%</span>
+                <span class="info-box-number"> Group : {{ $groupProfesseurModule->group->code_group }}</span>
+                <span class="info-box-number"> Module : {{ $groupProfesseurModule->module->code_module }}</span>
+                <div class="d-flex align-items-center"  >
+                  <div class="progress" style="width: 90%">
+                    <div class="progress-bar bg-info " style="width: {{ $groupProfesseurModule->realization_rate }}%"></div>
+                  </div>
+                  <span>{{round($groupProfesseurModule->realization_rate)}}%</span>
+                </div> 
               </div>
-              <span class="description">
-                message status davancement
-              </span>
             </div>
           </div>
-         
-        </div> 
-        
-           </div>
-        </div> 
+          @endforeach 
+         </div> 
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

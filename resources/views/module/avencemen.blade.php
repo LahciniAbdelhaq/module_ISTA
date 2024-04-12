@@ -23,37 +23,29 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('home') }}" class="nav-link">Home</a>
-      </li>
+      </li> 
     </ul>
 
     <!-- Right navbar links -->
-    <ul class="navbar-nav ml-auto">
-
+    <ul class="navbar-nav ml-auto"> 
+ 
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge">{{ count($notCompletedOnTime)}}</span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">15 Notifications</span>
+          <span class="dropdown-item dropdown-header">{{ count($notCompletedOnTime)}} Notifications</span>
+          @if ($notCompletedOnTime)
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">3 mins</span>
+            <i class="fas fa-file mr-2"></i> count($notCompletedOnTime) new reports 
           </a>
+          @endif
+            
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <a href="{{ route('avancemant.index') }}" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
       <li class="nav-item">
@@ -61,7 +53,7 @@
           <i class="fas fa-expand-arrows-alt"></i>
         </a>
       </li>
-
+       
     </ul>
   </nav>
   <!-- /.navbar -->
@@ -111,27 +103,20 @@
                 <div class="info-box-content ">
                   <div class=" d-flex justify-content-between">
                     <span class="info-box-text">{{$groupProfesseurModule->professeur->nom_prenom }}</span>
-                    <a href=""><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
+                    <a href="{{ route('avancemant.show', $groupProfesseurModule->id ) }}"><button class="btn btn-outline-secondary rounded-circle"><i class="fa-regular fa-arrow-right"></i></button></a>
                   </div>
-                  <span class="info-box-number">nom Group : {{ $groupProfesseurModule->group->code_group }}</span>
+                  <span class="info-box-number"> Group : {{ $groupProfesseurModule->group->code_group }}</span>
+                  <span class="info-box-number"> Module : {{ $groupProfesseurModule->module->code_module }}</span>
                   <div class="d-flex align-items-center"  >
                     <div class="progress" style="width: 90%">
-                      <div class="progress-bar bg-info " style="width: 70%"></div>
+                      <div class="progress-bar bg-info " style="width: {{ $groupProfesseurModule->realization_rate }}%"></div>
                     </div>
-                    <span>70%</span>
-                  </div>
-                  <span class="description">
-                    message status davancement
-                  </span>
+                    <span>{{round($groupProfesseurModule->realization_rate)}}%</span>
+                  </div> 
                 </div>
               </div>
-              @endforeach
-        </div>
-
-
-
-
-
+            </div>
+            @endforeach 
            </div>
         </div>
       </div><!-- /.container-fluid -->

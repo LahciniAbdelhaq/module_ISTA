@@ -15,6 +15,8 @@ class GroupProfesseurModule extends Model
         'group_code',
         'professeur_code',
         'module_code',
+        'date_debut' ,
+        'date_Efm',
         'nbr_h_semaine',
         'nbr_pre_s_1',
         'nbr_pre_s_2',

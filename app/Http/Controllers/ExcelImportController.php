@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
+use App\Models\GroupProfesseurModule;
 use App\Models\Module;
 use App\Models\Professeur;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 
@@ -138,60 +141,80 @@ class ExcelImportController extends Controller
 
 
     public function avancement(Request $request)
-    {
-        // Validate the uploaded file
-        $request->validate([
-            'excel_file' => 'required|mimes:xlsx,xls',
-        ]);
+{
+    // Validate the uploaded file
+    $request->validate([
+        'excel_file' => 'required|mimes:xlsx,xls',
+    ]);
 
-        // Get the uploaded file
-        $file = $request->file('excel_file');
+    // Get the uploaded file
+    $file = $request->file('excel_file');
 
-        // Load the Excel file
-        $spreadsheet = IOFactory::load($file);
+    // Load the Excel file
+    $spreadsheet = IOFactory::load($file);
 
-        // Get the first worksheet
-        $worksheet = $spreadsheet->getActiveSheet();
+    // Get the first worksheet
+    $worksheet = $spreadsheet->getActiveSheet();
 
-        // Get the highest column and row numbers
-        $highestRow = $worksheet->getHighestDataRow(); // e.g., 10
+    // Get the highest row number
+    $highestRow = $worksheet->getHighestDataRow();
 
-        // Iterate through rows and columns to read data
-        $data = [];
+    // Initialize data array
+    $data = [];
 
+    // Iterate through rows and columns to read data
+    for ($row = 2; $row <= $highestRow; $row++) {
+        // Get the value of 'professeur_code'
+        $professeurCode = $worksheet->getCell('T' . $row)->getValue();
 
-        // Iterate through rows and columns to read data
-        for ($row = 2; $row <= $highestRow; $row++) { 
-            // Get the value of 'professeur_code'
-            $professeurCode = $worksheet->getCell('T' . $row)->getValue();
-            
-            // Check if 'professeur_code' is null or an empty string
-            if ($professeurCode !== null && $professeurCode !== '') {
-                $rowData = [ 
-                    'group_code' => $worksheet->getCell('I' . $row)->getValue(),
-                    'professeur_code' => $professeurCode,
-                    'module_code' => $worksheet->getCell('Q' . $row)->getValue(),
-                    'nbr_pre_s_1' => $worksheet->getCell('X' . $row)->getValue(),
-                    'nbr_pre_s_2' => $worksheet->getCell('Y' . $row)->getValue(),
-                    'nbr_dis_s_1' => $worksheet->getCell('AB' . $row)->getValue(),
-                    'nbr_dis_s_2' => $worksheet->getCell('AC' . $row)->getValue(),
-                ];
-        
-                // Add row data to the array
-                $data[] = $rowData;
+        // Check if 'professeur_code' is null or an empty string
+        if ($professeurCode !== null && $professeurCode !== '') {
+            // Add row data to the array
+            $data[] = [
+                'group_code' => $worksheet->getCell('I' . $row)->getValue(),
+                'professeur_code' => $professeurCode,
+                'module_code' => $worksheet->getCell('Q' . $row)->getValue(),
+                'nbr_pre_s_1' => $worksheet->getCell('X' . $row)->getValue(),
+                'nbr_pre_s_2' => $worksheet->getCell('Y' . $row)->getValue(),
+                'nbr_dis_s_1' => $worksheet->getCell('AB' . $row)->getValue(),
+                'nbr_dis_s_2' => $worksheet->getCell('AC' . $row)->getValue(),
+            ];
+        }
+    }
+
+    // Perform database operations within a transaction
+    DB::beginTransaction();
+
+    try {
+        foreach ($data as $row) {
+            // Check if the referenced data exists in the respective tables
+            $groupExists = Group::where('code_group', $row['group_code'])->exists();
+            $professeurExists = Professeur::where('code_professeur', $row['professeur_code'])->exists();
+            $moduleExists = Module::where('code_module', $row['module_code'])->exists();
+
+            if ($groupExists && $professeurExists && $moduleExists) {
+                // Insert or update the data into the database
+                GroupProfesseurModule::updateOrCreate(
+                    ['group_code' => $row['group_code'], 'professeur_code' => $row['professeur_code'], 'module_code' => $row['module_code']],
+                    ['nbr_pre_s_1' => $row['nbr_pre_s_1'], 'nbr_pre_s_2' => $row['nbr_pre_s_2'], 'nbr_dis_s_1' => $row['nbr_dis_s_1'], 'nbr_dis_s_2' => $row['nbr_dis_s_2']]
+                );
+            } else {
+                dump($moduleExists);
+                dump($professeurExists);
+                dump($groupExists,$row['group_code']);
             }
         }
-        
 
-       // Insert or update the data into the database
-    // foreach ($data as $row) {
-    //     module::updateOrCreate(
-    //         ['group_code' => $row['group_code'], 'professeur_code' => $row['professeur_code'], 'module_code' => $row['module_code'], 'nbr_pre_s_1' => $row['nbr_pre_s_1'], 'nbr_pre_s_2' => $row['nbr_pre_s_2'], 'nbr_dis_s_1' => $row['nbr_dis_s_1'], 'nbr_dis_s_2' => $row['nbr_dis_s_2']],
-    //         ['group_code' => $row['group_code'], 'professeur_code' => $row['professeur_code'], 'module_code' => $row['module_code'], 'nbr_pre_s_1' => $row['nbr_pre_s_1'], 'nbr_pre_s_2' => $row['nbr_pre_s_2'], 'nbr_dis_s_1' => $row['nbr_dis_s_1'], 'nbr_dis_s_2' => $row['nbr_dis_s_2']]
-    //     );
-    // }
-
-        // Optionally, you can return the data or process it further
-        return response()->json($data);
+        // Commit the transaction if everything succeeds
+        DB::commit();
+    } catch (\Exception $e) {
+        // Rollback the transaction if an error occurs
+        DB::rollBack();
+        // Handle the exception (e.g., log the error message)
+        dd($e->getMessage());
     }
+
+    // Optionally, you can return the data or process it further
+    return response()->json($data);
+}
 }

@@ -35,6 +35,7 @@ Route::middleware('admin')->group(function () {
     Route::resource('modules' , ModuleController::class);
     Route::resource('professeurs', ProfesseurController::class);
     Route::resource('groupsProfesseursmodules' , GroupProfesseurModuleController::class);
+    Route::resource('avancemant' , AvancemantController::class);
 });
 
 
