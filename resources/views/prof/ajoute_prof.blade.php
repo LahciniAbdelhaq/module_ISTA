@@ -44,7 +44,7 @@
                   @if ($notCompletedOnTime)
                   <div class="dropdown-divider"></div>
                   <a href="#" class="dropdown-item">
-                    <i class="fas fa-file mr-2"></i> count($notCompletedOnTime) new reports 
+                    <i class="fas fa-file mr-2"></i> {{ count($notCompletedOnTime) }} new reports 
                   </a>
                   @endif
                     
@@ -174,11 +174,7 @@
     <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <footer class="main-footer">
-        <strong>Copyright &copy; 2014-2021 <a href="#">ISTA CITY DE L'AIR</a>.</strong>
-        All rights reserved.
-
-    </footer>
+     
 
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">

@@ -27,7 +27,7 @@ class ProfesseurController extends Controller
     public function create()
     {
         $notCompletedOnTime = $this->Alert();
-        return view('prof.ajoute_prof','notCompletedOnTime');
+        return view('prof.ajoute_prof',compact('notCompletedOnTime'));
     }
 
     /**

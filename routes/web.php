@@ -24,7 +24,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/not_found', function () {
+    return view('not_found');
+});
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

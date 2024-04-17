@@ -40,7 +40,7 @@
           @if ($notCompletedOnTime)
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> count($notCompletedOnTime) new reports 
+            <i class="fas fa-file mr-2"></i> {{ count($notCompletedOnTime) }} new reports 
           </a>
           @endif
             
@@ -121,7 +121,7 @@
               <div class="icon">
                 <i class="fa-regular fa-list-check"></i>
               </div>
-              <a href="" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('groupsProfesseursmodules.create') }}" class="small-box-footer">ajoute avancement <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -131,11 +131,7 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="#">ISTA CITY DE L'AIR</a>.</strong>
-    All rights reserved.
-
-  </footer>
+ 
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
