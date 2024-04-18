@@ -4,6 +4,7 @@ use App\Http\Controllers\AvancemantController;
 use App\Http\Controllers\ExcelImportController;
 use App\Http\Controllers\GroupProfesseurModuleController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InitializeDatabaseController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\ProfileController;
@@ -38,6 +39,8 @@ Route::middleware('admin')->group(function () {
     Route::resource('professeurs', ProfesseurController::class);
     Route::resource('groupsProfesseursmodules' , GroupProfesseurModuleController::class);
     Route::resource('avancemant' , AvancemantController::class);
+
+    Route::get('/initialize-database', [InitializeDatabaseController::class, 'initialize'])->name('initialize.database');
 });
 
 

@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
  
 use App\Models\GroupProfesseurModule;
+use App\Models\Module;
 use Carbon\Carbon; 
 
 class HomeController extends Controller
 {
     public function index(){
         $notCompletedOnTime = $this->Alert();
-        return view('home',compact('notCompletedOnTime'));
+        $modulesCount=Module::count();
+        return view('home',compact('notCompletedOnTime','modulesCount'));
     }
 
 

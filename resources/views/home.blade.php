@@ -100,14 +100,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>50</h3>
+                <h3>{{ $modulesCount }}</h3>
 
                 <p>all Modules</p>
               </div>
               <div class="icon">
                 <i class="fa-light fa-book-open-cover"></i> 
               </div>
-              <a href="" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="{{ route('modules.index') }}" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -127,6 +127,19 @@
           <!-- ./col -->
         </div>
       </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-3 col-6">  
+              <form id="initializeForm" action="{{ route('initialize.database') }}" method="GET">
+                @csrf
+                <button type="submit" class="btn btn-primary">Initialize Database</button>
+              </form> 
+          </div>
+        </div>
+      </div>
+
     </section>
     <!-- /.content -->
   </div>
